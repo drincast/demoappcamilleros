@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 
 import {
   AppRegistry,
@@ -11,17 +12,27 @@ import {
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
+import dataState from '../datastate';
+
 class QrReader extends Component{
   state = {
     datos: undefined
   }
 
   onSuccess(e){
-    this.setState({datos: e.data});
+    //this.setState({datos: e.data});
+
+    dataState.SetReadCode(e.data);
+
+    dataState.VerifyCode(e.data);
 
     // Linking
     // .openURL(e.data)
     // .catch(err => console.error('An error occured', err));
+
+    //alert(e.data);
+
+    this.props.navigation.navigate('CodeCompare');
   }
 
   render(){
@@ -39,6 +50,7 @@ class QrReader extends Component{
               <Text style={styles.buttonText}>{this.state.datos}</Text>
             </TouchableOpacity>
           }
+          reactivate={true}
         />
       </View>
     )
@@ -65,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QrReader;
+export default observer(QrReader);

@@ -12,6 +12,15 @@ import {
   View
 } from 'react-native';
 
+import { createStackNavigator } from 'react-navigation';
+
+
+
+import RouterA from './src/routera';
+// import Start from './src/components/start';
+// import QrReader from './src/components/qrreader';
+// import CodeCompare from './src/components/codecompare';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -19,24 +28,40 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+// const RouterA =  createStackNavigator(
+//   {
+//     Start: Start,
+//     QrReader: QrReader,
+//     CodeCompare: CodeCompare,
+//   },
+//   {
+//     initialRouteName: 'Start',
+//   }
+// );
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <RouterA />
     );
   }
 }
+
+
+
+// <View style={styles.container}>
+//   <Text style={styles.welcome}>
+//     Welcome to React Native!
+//   </Text>
+//   <Text style={styles.instructions}>
+//     To get started, edit App.js
+//   </Text>
+//   <Text style={styles.instructions}>
+//     {instructions}
+//   </Text>
+// </View>
+
 
 const styles = StyleSheet.create({
   container: {
