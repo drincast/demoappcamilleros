@@ -10,7 +10,7 @@ class DataState {
           {"code":"abcdefghijk", "state":0},
           {"code":"123abc456def789", "state":0},
         ],
-        ok:1,
+        ok:0,
         readcode: '',
       }
     );
@@ -28,17 +28,24 @@ class DataState {
 
       if(code === value.code){
         value.state = 1;
-        correct = true;
+        //correct = true;
         //this.platillos[index].cantidad = cantidadPlatillo
       }
     });
 
-    if(correct){
-      this.ok = 0;
-    }
-    else{
-      this.ok = 1;
-    }
+    this.ok = 1;
+    this.codes.forEach((value, index) => {
+      if(value.state === 0){
+        this.ok = 0;
+      }
+    });
+
+    // if(correct){
+    //   this.ok = 0;
+    // }
+    // else{
+    //   this.ok = 1;
+    // }
   }
 
   SetReadCode(code){
