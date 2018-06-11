@@ -6,30 +6,35 @@ class DataState {
       this,
       {
         codes: [
-          {"code":"1234567890", "state":0},
+          {"code":"0101800725909", "state":0},
           {"code":"abcdefghijk", "state":0},
           {"code":"123abc456def789", "state":0},
         ],
         ok:0,
         readcode: '',
+        colorInfo: '#00FF00',
+        log: [{
+                date: 'test',
+                device: "device uno",
+                state: 0
+              },
+              {
+                date: 'test',
+                device: "device uno",
+                state: 1
+              },
+            ],
       }
     );
   }
 
   VerifyCode(code){
-    let correct = false;
-    this.codes.forEach((value, index) => {
-      // if(this.readcode !== ''){
-      //
-      // }
-      // else{
-      //   alert("no hay código escaneado");
-      // }
+    let correctReading = 0;
 
+    this.codes.forEach((value, index) => {
       if(code === value.code){
         value.state = 1;
-        //correct = true;
-        //this.platillos[index].cantidad = cantidadPlatillo
+        correctReading = 1;
       }
     });
 
@@ -40,12 +45,7 @@ class DataState {
       }
     });
 
-    // if(correct){
-    //   this.ok = 0;
-    // }
-    // else{
-    //   this.ok = 1;
-    // }
+    this.AddLog(correctReading);
   }
 
   SetReadCode(code){
@@ -59,6 +59,22 @@ class DataState {
     });
     alert(uno);
   }
+
+  ChangeColorInfo(){
+    //alert(this.colorInfo + " to #FF0000");
+    this.colorInfo = '#FF0000';
+  }
+
+  AddLog(correct){
+    let date = new Date()
+    this.log.push({
+      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
+      device: "device uno",
+      state: correct
+    })
+  }
+
+
 }
 
 var dataState = new DataState();
