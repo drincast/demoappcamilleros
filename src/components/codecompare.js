@@ -37,10 +37,7 @@ class CodeCompare extends Component {
     const YesOK = <Text style={styles.text}>SI</Text>
 
     return(
-      <View style={{flex: 1,
-                   justifyContent: 'center',
-                   alignItems: 'center',
-                   backgroundColor: dataState.colorInfo,}}>
+      <View style={[styles.container, {backgroundColor: dataState.colorInfo}]}>
         <View style={styles.data}>
           <Text style={styles.text}>codigo: {dataState.codes[0].code} - estado: {dataState.codes[0].state}</Text>
           <Text style={styles.text}>codigo: {dataState.codes[1].code} - estado: {dataState.codes[1].state}</Text>
@@ -53,6 +50,12 @@ class CodeCompare extends Component {
         <View style={styles.sec2}>
           <TouchableOpacity>
             <Button title="ver logs" onPress={this.goToLogs.bind(this)}></Button>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.sec2}>
+          <TouchableOpacity>
+            <Button title="cambiar" onPress={this.changeBackground.bind(this)}></Button>
           </TouchableOpacity>
         </View>
 
@@ -77,14 +80,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-
-  containerRed: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FF0000',
-  },
-
   data:{
     flex:1,
   },

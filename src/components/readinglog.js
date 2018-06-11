@@ -5,25 +5,40 @@ import { observer } from 'mobx-react';
 import dataState from '../datastate';
 
 class ReadingLog extends Component{
+  // constructor(){
+  //   super();
+  //
+  //   this.state = {
+  //     data: dataState.log,
+  //   }
+  // }
+
+  // ComponentDipMount(){
+  //   if(dataState.log.length > 0){
+  //     this.setState({data: dataState.log});
+  //   }
+  // }
+
   impLog = () => {
-    let correct;
-    let text;
-    dataState.log.forEach((value, index) => {
-      if(code === value.code){
-        correct = value.state;
-        text = value.date + " - " + value.device + correct;
-      }
-    });
+    // let correct;
+    // let text;
+    // dataState.log.forEach((value, index) => {
+    //   if(code === value.code){
+    //     correct = value.state;
+    //     text = value.date + " - " + value.device + correct;
+    //   }
+    // });
   }
 
   getSectionListItem = (item) =>{
-    alert(item.state);
+    alert("id: " + item.id + " - " + item.state);
   }
 
   render(){
     return(
       <View style={styles.container}>
         <Text>Hola !!!!!!!!!!</Text>
+        <Text>De nuevo</Text>
         <SectionList
           sections={[
             {title: 'LOG', data: dataState.log}
