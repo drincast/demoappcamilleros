@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { observer } from 'mobx-react';
 
 import dataState from '../datastate';
+import generalStyle from '../style';
 
 class CodeCompare extends Component {
   goStart = () => {
@@ -37,7 +38,7 @@ class CodeCompare extends Component {
     const YesOK = <Text style={styles.text}>SI</Text>
 
     return(
-      <View style={[styles.container, {backgroundColor: dataState.colorInfo}]}>
+      <View style={[generalStyle.container, styles.container, {backgroundColor: dataState.colorInfo}]}>
         <View style={styles.data}>
           <Text style={styles.text}>codigo: {dataState.codes[0].code} - estado: {dataState.codes[0].state}</Text>
           <Text style={styles.text}>codigo: {dataState.codes[1].code} - estado: {dataState.codes[1].state}</Text>
@@ -48,18 +49,11 @@ class CodeCompare extends Component {
           {dataState.ok === 0 ? NoOK : YesOK}
         </View>
         <View style={styles.sec2}>
-          <TouchableOpacity>
-            <Button title="ver logs" onPress={this.goToLogs.bind(this)}></Button>
+          <TouchableOpacity onPress={this.goToLogs.bind(this)}
+            style={generalStyle.bottonContent}>
+            <Text style={generalStyle.bottonText}>Ver Log</Text>
           </TouchableOpacity>
         </View>
-
-        <View style={styles.sec2}>
-          <TouchableOpacity>
-            <Button title="cambiar" onPress={this.changeBackground.bind(this)}></Button>
-          </TouchableOpacity>
-        </View>
-
-
       </View>
     );
   }
@@ -72,25 +66,28 @@ class CodeCompare extends Component {
 //   </TouchableOpacity>
 // </View>
 
+// container: {
+//   flex: 1,
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   backgroundColor: '#F5FCFF',
+// },
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  container:{
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   data:{
-    flex:1,
+    alignItems: 'center',
+    // flex:1,
   },
   sec2:{
-    flex:1,
+    // flex:1,
   },
   text:{
-    // flex: 1,
     fontSize: 20,
   }
-
 });
 
 export default observer(CodeCompare);

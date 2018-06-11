@@ -15,12 +15,14 @@ class DataState {
         colorInfo: '#F5FCFF',
         log: [{
                 id: 0,
+                code: 'nnn',
                 date: 'test',
                 device: "device uno",
                 state: 0
               },
               {
                 id: 1,
+                code: 'xxx',
                 date: 'test',
                 device: "device uno",
                 state: 1
@@ -63,7 +65,7 @@ class DataState {
       }
     });
 
-    this.AddLog(correctReading);
+    this.AddLog(correctReading, code);
     this.VerifyColor(correctReading);
   }
 
@@ -80,27 +82,26 @@ class DataState {
   }
 
   ChangeColorInfo(){
-    //alert(this.colorInfo + " to #FF0000");
     if('#FF0000' === this.colorInfo){
       this.colorInfo = '#00FF00';
     }
     else {
       this.colorInfo = '#FF0000';
     }
-
   }
 
-  AddLog(correct){
+  AddLog(correct, code){
     let date = new Date()
     this.log.push({
       id: this.log.length,
-      date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
+      code: code,
+      date: `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}`,
       device: "device uno",
       state: correct
     })
   }
 
-
+  // date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes(),
 }
 
 var dataState = new DataState();

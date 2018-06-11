@@ -5,14 +5,6 @@ import { observer } from 'mobx-react';
 import dataState from '../datastate';
 
 class ReadingLog extends Component{
-  // constructor(){
-  //   super();
-  //
-  //   this.state = {
-  //     data: dataState.log,
-  //   }
-  // }
-
   // ComponentDipMount(){
   //   if(dataState.log.length > 0){
   //     this.setState({data: dataState.log});
@@ -31,25 +23,26 @@ class ReadingLog extends Component{
   }
 
   getSectionListItem = (item) =>{
-    alert("id: " + item.id + " - " + item.state);
+    alert("code: " + item.code + " - " + item.state);
   }
 
   render(){
     return(
       <View style={styles.container}>
-        <Text>Hola !!!!!!!!!!</Text>
-        <Text>De nuevo</Text>
         <SectionList
           sections={[
             {title: 'LOG', data: dataState.log}
           ]}
 
-          renderSectionHeader={ ({section}) => <Text style={styles.headerList}>
-                                                   { section.title }
-                                               </Text> }
+          renderSectionHeader={
+            ({section}) => <Text style={styles.headerList}>
+                            { section.title }
+                           </Text> }
 
           renderItem = {
-            ({item}) => <Text style={(item.state === 0) ? styles.itemNot : styles.itemOk} onPress={this.getSectionListItem.bind(this, item)}> { item.date + " - " + item.device + " - " + item.state } </Text>
+            ({item}) => <Text style={(item.state === 0) ? styles.itemNot : styles.itemOk}
+                              onPress={this.getSectionListItem.bind(this, item)}> { item.date + " - " + item.device + " - " + item.state }
+                        </Text>
           }
 
           keyExtractor={ (item, index) => index }
