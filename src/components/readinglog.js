@@ -3,6 +3,8 @@ import { Button, SectionList, StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 
 import dataState from '../datastate';
+import generalStyle from '../style';
+const configTheme = require('../utils/configstyle');
 
 class ReadingLog extends Component{
   // ComponentDipMount(){
@@ -28,7 +30,7 @@ class ReadingLog extends Component{
 
   render(){
     return(
-      <View style={styles.container}>
+      <View style={generalStyle.container}>
         <SectionList
           sections={[
             {title: 'LOG', data: dataState.log}
@@ -57,22 +59,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerList: {
-    backgroundColor : '#CDDC39',
-    fontSize : 20,
+    backgroundColor : configTheme.thisBlue,
+    fontSize : 25,
     padding: 5,
-    color: '#fff',
+    color: configTheme.thisWhite,
   },
   itemOk: {
     paddingBottom: 5,
     paddingTop: 5,
     borderBottomWidth:1,
-    backgroundColor : '#00FF00',
+    backgroundColor : configTheme.thisGreen,
   },
   itemNot: {
     paddingBottom: 5,
     paddingTop: 5,
     borderBottomWidth:1,
-    backgroundColor : '#FF0000',
+    backgroundColor : configTheme.thisRed,
   }
 });
 

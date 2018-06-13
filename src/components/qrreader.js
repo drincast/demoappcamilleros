@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
+import generalStyle from '../style';
+const configTheme = require('../utils/configstyle');
+
 import {
   AppRegistry,
   StyleSheet,
@@ -17,6 +20,12 @@ import dataState from '../datastate';
 class QrReader extends Component{
   state = {
     datos: undefined
+  }
+
+  activeCodeReading() {
+    alert('Load OK !!!');
+    // Pedimos algunos datos
+    this.scanner.reactivate();
   }
 
   onSuccess(e){
@@ -37,8 +46,9 @@ class QrReader extends Component{
 
   render(){
     return(
-      <View style={{flex: 1}}>
+      <View style={generalStyle.container}>
         <QRCodeScanner
+          ref={(node) => {this.scanner = node }}
           onRead={this.onSuccess.bind(this)}
           topContent={
             <Text style={styles.centerText}>
@@ -50,8 +60,12 @@ class QrReader extends Component{
               <Text style={styles.buttonText}>{this.state.datos}</Text>
             </TouchableOpacity>
           }
-          reactivate={true}
+          reactivate={false}
         />
+        <TouchableOpacity style={generalStyle.bottonContent}
+            onPress={this.activeCodeReading.bind(this)}>
+          <Text style={generalStyle.bottonText}>Códigos a Leer</Text>
+        </TouchableOpacity>
       </View>
     )
   }

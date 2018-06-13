@@ -1,4 +1,5 @@
 import { extendObservable } from 'mobx';
+const configTheme = require('./utils/configstyle');
 
 class DataState {
   constructor() {
@@ -12,7 +13,7 @@ class DataState {
         ],
         ok:0,
         readcode: '',
-        colorInfo: '#F5FCFF',
+        colorInfo: configTheme.thisWhite,
         log: [{
                 id: 0,
                 code: 'nnn',
@@ -34,17 +35,17 @@ class DataState {
 
   VerifyColor(correctReading){
     if(1 === correctReading && 1 === this.ok){
-      this.colorInfo = '#00FF00';
+      this.colorInfo = configTheme.thisGreen;
       return;
     }
 
     if(1 === correctReading && 0 === this.ok){
-      this.colorInfo = '#F5FCFF';
+      this.colorInfo = configTheme.thisWhite;
       return;
     }
 
     else{
-      this.colorInfo = '#FF0000';
+      this.colorInfo = configTheme.thisRed;
     }
   }
 
