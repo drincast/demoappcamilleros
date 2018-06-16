@@ -5,19 +5,21 @@ import { observer } from 'mobx-react';
 import dataState from '../datastate';
 import generalStyle from '../style';
 
+const configTheme = require('../utils/configstyle');
+
 class Start extends Component {
   startReading = () => {
     this.props.navigation.navigate('QrReader');
   }
 
   printVals = () => {
+    alert(dataState.colorInfo)
     this.props.navigation.navigate('CodeCompare');
-    //dataState.PrintValues('ddd');
   }
 
   render(){
     return(
-      <View style={[generalStyle.container, styles.container]}>
+      <View style={[generalStyle.container, styles.container, {backgroundColor: dataState.GetColorInfo()}]}>
         <TouchableOpacity style={generalStyle.bottonContent}
             onPress={this.startReading.bind(this)}>
           <Text style={generalStyle.bottonText}>Leer Código</Text>

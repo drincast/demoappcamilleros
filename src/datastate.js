@@ -14,24 +14,25 @@ class DataState {
         ok:0,
         readcode: '',
         colorInfo: configTheme.thisWhite,
-        log: [{
-                id: 0,
-                code: 'nnn',
-                date: 'test',
-                device: "device uno",
-                state: 0
-              },
-              {
-                id: 1,
-                code: 'xxx',
-                date: 'test',
-                device: "device uno",
-                state: 1
-              },
-            ],
+        log: [],
       }
     );
   }
+
+  // {
+  //   id: 0,
+  //   code: 'nnn',
+  //   date: 'test',
+  //   device: "device uno",
+  //   state: 0
+  // },
+  // {
+  //   id: 1,
+  //   code: 'xxx',
+  //   date: 'test',
+  //   device: "device uno",
+  //   state: 1
+  // },
 
   VerifyColor(correctReading){
     if(1 === correctReading && 1 === this.ok){
@@ -51,7 +52,7 @@ class DataState {
 
   VerifyCode(code){
     let correctReading = 0;
-    alert(code);
+    //alert(code);
     this.codes.forEach((value, index) => {
       if(code === value.code){
         value.state = 1;
@@ -100,6 +101,10 @@ class DataState {
       device: "device uno",
       state: correct
     })
+  }
+
+  GetColorInfo(){
+    return this.colorInfo;
   }
 
   // date: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes(),

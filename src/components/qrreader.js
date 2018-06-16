@@ -6,10 +6,11 @@ const configTheme = require('../utils/configstyle');
 
 import {
   AppRegistry,
+  Linking,
   StyleSheet,
+  ScrollView,
   Text,
   TouchableOpacity,
-  Linking,
   View
 } from 'react-native';
 
@@ -23,8 +24,7 @@ class QrReader extends Component{
   }
 
   activeCodeReading() {
-    alert('Load OK !!!');
-    // Pedimos algunos datos
+    //alert('Load OK !!!');    
     this.scanner.reactivate();
   }
 
@@ -46,30 +46,35 @@ class QrReader extends Component{
 
   render(){
     return(
-      <View style={generalStyle.container}>
-        <QRCodeScanner
-          ref={(node) => {this.scanner = node }}
-          onRead={this.onSuccess.bind(this)}
-          topContent={
-            <Text style={styles.centerText}>
-              <Text style={styles.textBold}>Lectura de código</Text>
-            </Text>
-          }
-          bottomContent={
-            <TouchableOpacity style={styles.buttonTouchable}>
-              <Text style={styles.buttonText}>{this.state.datos}</Text>
-            </TouchableOpacity>
-          }
-          reactivate={false}
-        />
-        <TouchableOpacity style={generalStyle.bottonContent}
-            onPress={this.activeCodeReading.bind(this)}>
-          <Text style={generalStyle.bottonText}>Códigos a Leer</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView>
+        <View style={[generalStyle.container, {backgroundColor: dataState.GetColorInfo()}]}>
+          <QRCodeScanner
+            ref={(node) => {this.scanner = node }}
+            onRead={this.onSuccess.bind(this)}
+            topContent={
+              <Text style={styles.centerText}>
+                <Text style={styles.textBold}>Lectura de código</Text>
+              </Text>
+            }
+            bottomContent={
+
+              <TouchableOpacity style={generalStyle.bottonContent}
+                  onPress={this.activeCodeReading.bind(this)}>
+                <Text style={generalStyle.bottonText}>Activar Lector</Text>
+              </TouchableOpacity>
+            }
+            reactivate={false}
+          />
+        </View>
+      </ScrollView>
     )
   }
 }
+
+// <TouchableOpacity style={styles.buttonTouchable}>
+//   <Text style={styles.buttonText}>{this.state.datos}</Text>
+// </TouchableOpacity>
+
 
 const styles = StyleSheet.create({
   centerText: {
